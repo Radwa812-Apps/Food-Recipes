@@ -14,7 +14,7 @@ class FoodRecipes extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme:
           ThemeData(primarySwatch: Colors.purple, fontFamily: 'Protest Riot'),
-      home: const HomeView(),
+      home:  const HomeView(),
     );
   }
 }
