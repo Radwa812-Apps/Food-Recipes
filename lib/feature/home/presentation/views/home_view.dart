@@ -33,6 +33,7 @@ class HomeView extends StatelessWidget {
           children: [
             const SearchW(),
             FoodItemW(
+              ratio: 2/2,
               ontap: (() {
                 Navigator.push(
                   context,

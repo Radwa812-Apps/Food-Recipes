@@ -80,7 +80,9 @@ flutter:
     - family: Protest Riot
       fonts:
         - asset: assets/fonts/ProtestRiot-Regular.ttf
-        
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
