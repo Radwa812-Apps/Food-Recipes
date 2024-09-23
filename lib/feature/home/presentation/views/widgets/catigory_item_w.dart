@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quote_generator/feature/home/presentation/views/catigory_body_view.dart';
 
 class CatigoryItemW extends StatelessWidget {
   const CatigoryItemW({
@@ -10,12 +11,16 @@ class CatigoryItemW extends StatelessWidget {
   final String name;
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: IconButton(
-        onPressed: (() {}),
-        icon: Container(
-          height: 70,
-          width: 70,
+    return GestureDetector(
+      onTap: (() {
+        Navigator.push(context, MaterialPageRoute(builder: ((context) {
+          return CatigoryBodyView();
+        })));
+      }),
+      child: ListTile(
+        leading: Container(
+          height: 50,
+          width: 50,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(
                 12,
@@ -27,10 +32,10 @@ class CatigoryItemW extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-      ),
-      title: Text(
-        name,
-        style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+        title: Text(
+          name,
+          style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }

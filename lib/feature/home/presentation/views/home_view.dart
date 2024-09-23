@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quote_generator/feature/home/presentation/views/food_details_view.dart';
 import 'package:quote_generator/feature/home/presentation/views/widgets/catigory_icon_w.dart';
 import 'package:quote_generator/feature/home/presentation/views/widgets/catigory_w.dart';
 
-import 'widgets/food_item__icons_w.dart';
-import 'widgets/food_item_image.dart';
-import 'widgets/animated_textExample_w.dart';
-import 'widgets/food_item_w.dart';
+import 'widgets/food_item_listview_w.dart';
 import 'widgets/search_w.dart';
 
 class HomeView extends StatelessWidget {
@@ -30,24 +26,13 @@ class HomeView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          children: [
-            const SearchW(),
-            FoodItemW(
-              ratio: 2/2,
-              ontap: (() {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: ((context) {
-                      return FoodDetailsView();
-                    }),
-                  ),
-                );
-              }),
-            ),
+          children: const [
+            SearchW(),
+            FoodItemListW(),
           ],
         ),
       ),
     );
   }
 }
+
