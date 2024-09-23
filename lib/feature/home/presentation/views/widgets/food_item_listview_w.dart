@@ -12,7 +12,6 @@ class FoodItemListW extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        padding: EdgeInsets.zero,
         itemBuilder: (BuildContext context, int index) {
           return FoodItemW(
             ratio: 2 / 2,
@@ -21,7 +20,7 @@ class FoodItemListW extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: ((context) {
-                    return  FoodDetailsView();
+                    return FoodDetailsView();
                   }),
                 ),
               );

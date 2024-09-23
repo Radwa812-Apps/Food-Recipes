@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quote_generator/core/constant.dart';
 import 'package:quote_generator/feature/home/presentation/views/widgets/food_item_image.dart';
 
+import '../../../../core/URL_Lancher.dart';
 import 'widgets/custom_button_w.dart';
 import 'widgets/food_item_link.dart';
 import 'widgets/item_details_info_w.dart';
@@ -14,6 +15,19 @@ class FoodDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: (() {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: ((context) {
+                  return const HyperlinkButton();
+                }),
+              ),
+            );
+          }),
+          child: Icon(Icons.play_arrow_outlined),
+        ),
         backgroundColor: backgroundColor,
         appBar: AppBar(
           elevation: 0,
@@ -76,7 +90,8 @@ class FoodDetailsView extends StatelessWidget {
                         children: [
                           customButtonW(
                             ontap: ((() {
-                              
+                              launchCustomUrl(context,
+                                  'https://www.iwashyoudry.com/quick-and-easy-taco-soup-recipe/');
                             })),
                             tcolor: Colors.black,
                             color: Colors.white,
@@ -121,7 +136,6 @@ class FoodDetailsView extends StatelessWidget {
                         title: '4 Likes',
                         icon: Icons.access_time_filled,
                       ),
-                      HyperlinkButton()
                     ],
                   ),
                 ),
