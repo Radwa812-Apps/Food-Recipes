@@ -12,9 +12,11 @@ class FoodRecipes extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme:
-          ThemeData(primarySwatch: Colors.purple, fontFamily: 'Protest Riot'),
-      home:  const HomeView(),
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        fontFamily: 'Protest Riot',
+      ),
+      home: const HomeView(),
     );
   }
 }

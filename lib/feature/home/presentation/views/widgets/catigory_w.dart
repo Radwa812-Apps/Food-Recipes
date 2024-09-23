@@ -14,8 +14,9 @@ class CatigoryWidget extends StatelessWidget {
       ),
       child: Drawer(
         child: Padding(
-            padding: EdgeInsets.only(top: 100, left: 60),
-            child: CatigoryBodyW()),
+          padding: EdgeInsets.only(top: 100, left: 60),
+          child: CatigoryBodyW(),
+        ),
       ),
     );
   }
