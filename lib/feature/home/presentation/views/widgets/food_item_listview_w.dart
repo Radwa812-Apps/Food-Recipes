@@ -21,7 +21,7 @@ class FoodItemListW extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: ((context) {
-                    return const FoodDetailsView();
+                    return  FoodDetailsView();
                   }),
                 ),
               );

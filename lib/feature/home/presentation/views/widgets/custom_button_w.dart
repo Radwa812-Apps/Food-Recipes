@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class customButtonW extends StatelessWidget {
@@ -7,13 +6,14 @@ class customButtonW extends StatelessWidget {
     required this.name,
     required this.borderRadius,
     required this.color,
-    required this.tcolor,
+    required this.tcolor, required this.ontap,
   }) : super(key: key);
 
   final String name;
   final BorderRadius borderRadius;
   final Color color;
   final Color tcolor;
+  final Function() ontap;
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -26,7 +26,7 @@ class customButtonW extends StatelessWidget {
         padding: const EdgeInsets.symmetric(
             horizontal: 16, vertical: 8), // Optional: Padding inside the button
       ),
-      onPressed: () {},
+      onPressed: ontap,
       child: Text(
         name,
         style: TextStyle(

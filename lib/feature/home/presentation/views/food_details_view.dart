@@ -9,7 +9,7 @@ import 'widgets/item_detals_des_w.dart';
 import 'widgets/similar_food_item_list_w.dart';
 
 class FoodDetailsView extends StatelessWidget {
-  const FoodDetailsView({super.key});
+  FoodDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,20 +73,27 @@ class FoodDetailsView extends StatelessWidget {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           customButtonW(
+                            ontap: ((() {
+                              
+                            })),
                             tcolor: Colors.black,
                             color: Colors.white,
                             name: 'See More',
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(12),
                                 bottomLeft: Radius.circular(12)),
                           ),
                           customButtonW(
+                            ontap: (() {
+                              showInstructionsDialog(
+                                  context); // Show the dialog with instructions
+                            }),
                             tcolor: Colors.white,
                             color: Colors.purple,
                             name: 'instructions',
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(12),
                                 bottomRight: Radius.circular(12)),
                           ),
@@ -142,5 +149,40 @@ class FoodDetailsView extends StatelessWidget {
                 ),
               ]),
         ));
+  }
+
+  final List<String> instructions = [
+    "Add the ground beef and onion to a large pot and stir until the beef is cooked through.",
+    "Drain excess liquid.",
+    "Add the kidney beans, black beans, corn, tomatoes, tomato sauce, and taco seasoning to the pot, and stir until combined.",
+    "Cook over medium heat for 10 minutes.",
+    "Serve with cheddar cheese, sour cream, pico de gallo, avocado, corn chips, lime wedges, and cilantro.",
+    "Enjoy!"
+  ];
+
+  // Function to show the instructions in a dialog
+  void showInstructionsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Instructions'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children:
+                  instructions.map((instruction) => Text(instruction)).toList(),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: const Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
