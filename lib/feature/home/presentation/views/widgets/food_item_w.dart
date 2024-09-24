@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quote_generator/core/constant.dart';
+import 'package:quote_generator/feature/home/data/manager/food/food.dart';
 
 import 'animated_textExample_w.dart';
 import 'food_item__icons_w.dart';
@@ -10,9 +11,12 @@ class FoodItemW extends StatelessWidget {
     Key? key,
     required this.ontap,
     required this.ratio,
+    required this.food,
   }) : super(key: key);
   final Function() ontap;
   final double ratio;
+
+  final Food food;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -37,27 +41,35 @@ class FoodItemW extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AnimatedTextW(),
+                  Text(
+                    food.name!,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 23, color: Colors.white),
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
-                  const FoodItemImageW(),
+                  FoodItemImageW(
+                    image: food.thumbnailUrl!,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
+                    children: [
                       FoodItemIconW(
-                        color: Color.fromARGB(255, 174, 232, 109),
-                        info: '4 Servings',
+                        color: const Color.fromARGB(255, 174, 232, 109),
+                        info: '${food.numServings} Servings',
                         icon: Icons.room_service,
                       ),
                       FoodItemIconW(
-                        color: Color.fromARGB(255, 182, 60, 52),
-                        info: '8 Likes',
+                        color: const Color.fromARGB(255, 182, 60, 52),
+                        info:
+                            formatNumber(food.userRatings!.countPositive!),
                         icon: Icons.favorite_border,
                       ),
                       FoodItemIconW(
-                        color: Color.fromARGB(255, 48, 66, 76),
-                        info: '45 Min',
+                        color: const Color.fromARGB(255, 48, 66, 76),
+                        info: '${food.totalTimeMinutes} Min',
                         icon: Icons.access_time_filled,
                       ),
                     ],
@@ -69,5 +81,15 @@ class FoodItemW extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String formatNumber(int number) {
+    if (number >= 1000 && number < 1000000) {
+      return '${(number / 1000).toStringAsFixed(1)}K'; // For 1K to 999K
+    } else if (number >= 1000000) {
+      return '${(number / 1000000).toStringAsFixed(1)}M'; // For 1M and above
+    } else {
+      return number.toString(); // For less than 1K
+    }
   }
 }

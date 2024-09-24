@@ -32,7 +32,7 @@ class SimilarFoodItemW extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 2, right: 2),
-                    child: FoodItemImageW(),
+                    // child: FoodItemImageW(image: ,),
                   ),
                   Text(
                     '8 Persons',

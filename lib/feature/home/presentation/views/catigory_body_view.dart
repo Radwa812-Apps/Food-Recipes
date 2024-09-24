@@ -14,7 +14,7 @@ class CatigoryBodyView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             children: const [
-              FoodItemListW(),
+             // FoodItemListW(),
             ],
           ),
         ),

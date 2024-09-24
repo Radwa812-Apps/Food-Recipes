@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quote_generator/core/constant.dart';
+import 'package:quote_generator/feature/home/data/manager/food/food.dart';
 import 'package:quote_generator/feature/home/presentation/views/widgets/food_item_image.dart';
 
 import '../../../../core/URL_Lancher.dart';
@@ -12,6 +13,7 @@ import 'widgets/similar_food_item_list_w.dart';
 class FoodDetailsView extends StatelessWidget {
   FoodDetailsView({super.key});
 
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +61,7 @@ class FoodDetailsView extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    FoodItemImageW(),
+                  //  FoodItemImageW(),
                     SizedBox(
                       height: 20,
                     ),
