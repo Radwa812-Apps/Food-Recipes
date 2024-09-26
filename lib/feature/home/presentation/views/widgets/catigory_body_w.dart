@@ -18,7 +18,7 @@ class CatigoryBodyW extends StatelessWidget {
         CatigoryItemW(name: 'Dairy', icon: Icons.icecream),
         CatigoryItemW(name: 'Beverages', icon: Icons.local_drink),
         CatigoryItemW(name: 'Desserts', icon: Icons.cake),
-        CatigoryItemW(name: 'Solid Fats', icon: Icons.kitchen),
+        CatigoryItemW(name: 'protein', icon: Icons.kitchen),
         CatigoryItemW(name: 'Protein Foods', icon: Icons.fastfood),
       ],
     );

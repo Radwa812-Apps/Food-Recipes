@@ -3,9 +3,9 @@ import 'package:video_player/video_player.dart';
 
 class HyperlinkButton extends StatefulWidget {
   const HyperlinkButton({
-    super.key,
+    super.key, required this.videoUrl,
   });
-
+  final String videoUrl;
   @override
   State<HyperlinkButton> createState() => _HyperlinkButtonState();
 }
@@ -19,7 +19,7 @@ class _HyperlinkButtonState extends State<HyperlinkButton> {
     super.initState();
     // Initialize the video controller with the video URL
     _controller = VideoPlayerController.network(
-        'https://s3.amazonaws.com/video-api-prod/assets/c18a0374af034d0d83e9db2d43a59274/BFV34351_TacoSoup-FB.mp4')
+        widget.videoUrl)
       ..initialize().then((_) {
         // Ensure the video is displayed as soon as it is initialized
         setState(() {

@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quote_generator/core/constant.dart';
-import 'package:quote_generator/feature/home/data/manager/food/food.dart';
-import 'package:quote_generator/feature/home/presentation/views/widgets/food_item_image.dart';
+import 'package:quote_generator/feature/home/presentation/views/widgets/details_similar_recipes_w.dart';
 
 import '../../../../core/URL_Lancher.dart';
+import '../../../../core/functions.dart';
+import '../../data/manager/food/food.dart';
 import 'widgets/custom_button_w.dart';
+import 'widgets/details_title_w.dart';
+import 'widgets/details_user_reviews_w.dart';
 import 'widgets/food_item_link.dart';
 import 'widgets/item_details_info_w.dart';
 import 'widgets/item_detals_des_w.dart';
 import 'widgets/similar_food_item_list_w.dart';
 
 class FoodDetailsView extends StatelessWidget {
-  FoodDetailsView({super.key});
+  FoodDetailsView({super.key, required this.food});
+  final Food food;
 
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,12 +27,14 @@ class FoodDetailsView extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: ((context) {
-                  return const HyperlinkButton();
+                  return HyperlinkButton(
+                    videoUrl: food.originalVideoUrl!,
+                  );
                 }),
               ),
             );
           }),
-          child: Icon(Icons.play_arrow_outlined),
+          child: const Icon(Icons.play_arrow_outlined),
         ),
         backgroundColor: backgroundColor,
         appBar: AppBar(
@@ -48,41 +54,15 @@ class FoodDetailsView extends StatelessWidget {
           child: CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
-                SliverToBoxAdapter(
-                  child: Column(children: const [
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Text(
-                      'Soups For Every Occasion',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                  //  FoodItemImageW(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                  ]),
-                ),
+                DetailsTitleW(food: food),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      Container(
-                        height: 250,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            9,
-                          ),
-                          color: Colors.white,
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: ItemDetailsDescriptionW(),
-                        ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ItemDetailsDescriptionW(
+                        desc: food.description!,
                       ),
                       const SizedBox(
                         height: 20,
@@ -92,8 +72,7 @@ class FoodDetailsView extends StatelessWidget {
                         children: [
                           customButtonW(
                             ontap: ((() {
-                              launchCustomUrl(context,
-                                  'https://www.iwashyoudry.com/quick-and-easy-taco-soup-recipe/');
+                              launchCustomUrl(context, food.inspiredByUrl);
                             })),
                             tcolor: Colors.black,
                             color: Colors.white,
@@ -104,8 +83,8 @@ class FoodDetailsView extends StatelessWidget {
                           ),
                           customButtonW(
                             ontap: (() {
-                              showInstructionsDialog(
-                                  context); // Show the dialog with instructions
+                              showInstructionsDialog(context,
+                                  food.instructions!); // Show the dialog with instructions
                             }),
                             tcolor: Colors.white,
                             color: Colors.purple,
@@ -123,82 +102,23 @@ class FoodDetailsView extends StatelessWidget {
                   ),
                 ),
                 SliverToBoxAdapter(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      ItemDetailsInfoW(
-                        title: '4 Likes',
-                        icon: Icons.room_service,
-                      ),
-                      ItemDetailsInfoW(
-                        title: '4 Likes',
-                        icon: Icons.favorite,
-                      ),
-                      ItemDetailsInfoW(
-                        title: '4 Likes',
-                        icon: Icons.access_time_filled,
-                      ),
-                    ],
-                  ),
+                  child: DetailsUserReviewW(food: food),
                 ),
-                SliverToBoxAdapter(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.only(left: 10, top: 30),
-                        child: Text(
-                          'Simiral Recipes',
-                          style: TextStyle(
-                            color: Colors.white, // Text color
-                            fontSize: 20,
-                          ),
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      SimilarFoodItemListW(),
-                    ],
-                  ),
+                const SliverToBoxAdapter(
+                  child: DetailsSimilarRecipesW(),
                 ),
               ]),
         ));
   }
 
-  final List<String> instructions = [
-    "Add the ground beef and onion to a large pot and stir until the beef is cooked through.",
-    "Drain excess liquid.",
-    "Add the kidney beans, black beans, corn, tomatoes, tomato sauce, and taco seasoning to the pot, and stir until combined.",
-    "Cook over medium heat for 10 minutes.",
-    "Serve with cheddar cheese, sour cream, pico de gallo, avocado, corn chips, lime wedges, and cilantro.",
-    "Enjoy!"
-  ];
+  // final List<String> instructions = [
+  //   "Add the ground beef and onion to a large pot and stir until the beef is cooked through.",
+  //   "Drain excess liquid.",
+  //   "Add the kidney beans, black beans, corn, tomatoes, tomato sauce, and taco seasoning to the pot, and stir until combined.",
+  //   "Cook over medium heat for 10 minutes.",
+  //   "Serve with cheddar cheese, sour cream, pico de gallo, avocado, corn chips, lime wedges, and cilantro.",
+  //   "Enjoy!"
+  // ];
 
   // Function to show the instructions in a dialog
-  void showInstructionsDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Instructions'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children:
-                  instructions.map((instruction) => Text(instruction)).toList(),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-              child: const Text('Close'),
-            ),
-          ],
-        );
-      },
-    );
-  }
 }

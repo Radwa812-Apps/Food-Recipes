@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quote_generator/feature/home/data/get_food_recipes_cubit/get_food_recipes_cubit.dart';
+import 'package:quote_generator/feature/home/data/cubit/similar_food_cubit/similar_food_recipes_cubit.dart';
 import 'package:quote_generator/feature/home/data/manager/food/food.dart';
 
 import '../food_details_view.dart';
@@ -19,18 +19,20 @@ class FoodItemListW extends StatelessWidget {
         itemCount: recipes.length,
         itemBuilder: (BuildContext context, int index) {
           return FoodItemW(
+            food: recipes[index],
             ratio: 2 / 2,
             ontap: (() {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: ((context) {
-                    return FoodDetailsView();
+                    BlocProvider.of<SimilarFoodRecipesCubit>(context)
+                        .getSimilarFoodCubit(id: recipes[index].id!);
+                    return FoodDetailsView(food: recipes[index]);
                   }),
                 ),
               );
             }),
-            food: recipes[index],
           );
         },
       ),

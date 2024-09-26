@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quote_generator/core/constant.dart';
 import 'package:quote_generator/feature/home/data/manager/food/food.dart';
 
+import '../../../../../core/functions.dart';
 import 'animated_textExample_w.dart';
 import 'food_item__icons_w.dart';
 import 'food_item_image.dart';
@@ -83,13 +84,5 @@ class FoodItemW extends StatelessWidget {
     );
   }
 
-  String formatNumber(int number) {
-    if (number >= 1000 && number < 1000000) {
-      return '${(number / 1000).toStringAsFixed(1)}K'; // For 1K to 999K
-    } else if (number >= 1000000) {
-      return '${(number / 1000000).toStringAsFixed(1)}M'; // For 1M and above
-    } else {
-      return number.toString(); // For less than 1K
-    }
-  }
+  
 }
