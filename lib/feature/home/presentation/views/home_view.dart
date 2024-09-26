@@ -3,8 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quote_generator/feature/home/data/services/get_food_items.dart';
-import 'package:quote_generator/feature/home/presentation/views/widgets/catigory_icon_w.dart';
-import 'package:quote_generator/feature/home/presentation/views/widgets/catigory_w.dart';
+import 'package:quote_generator/feature/carigory/presentation/views/widgets/catigory_icon_w.dart';
+import 'package:quote_generator/feature/carigory/presentation/views/widgets/catigory_w.dart';
 
 import '../../data/cubit/get_food_recipes_cubit/get_food_recipes_cubit.dart';
 import 'widgets/food_item_listview_w.dart';
